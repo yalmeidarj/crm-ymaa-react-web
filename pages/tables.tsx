@@ -35,12 +35,9 @@ export default function tables( props:TableProps ) {
     <>
       <div className="App">
           <ServicesTable data={props} />  
-                  
-      </div>
-      <br></br>
-      <br></br>
-      <div>
-        <ClientsTable data={props} />
+          {/* <br></br>
+          <br></br> */}
+          <ClientsTable data={props} />
       </div>
     </>
   // <Login></Login> data={ dataTable} column={column}

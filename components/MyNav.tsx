@@ -26,9 +26,9 @@ export function MyNav() {
                   </NavDropdown>
                 </Nav>
                 <Nav>
-                  <Nav.Link href="/userLogin">Login</Nav.Link>
+                  <Nav.Link href="/userLogin">Encerrar  </Nav.Link>
                   <Nav.Link eventKey={2} href="#memes">
-                    Dank memes
+                    Perfil
                   </Nav.Link>
                 </Nav>
               </Navbar.Collapse>

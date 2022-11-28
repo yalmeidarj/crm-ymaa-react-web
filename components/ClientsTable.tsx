@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import Client from './Client';
 import Pagination from './Pagination';
-
+import styles from '../styles/ClientTable.module.css'
+import AddServiceButton from './AddServiceButton';
 interface clientElement {
     clients: {
         id:       number;
@@ -41,18 +42,21 @@ export default function ClientsTable( data: ClientsProps ) {
   const client = data.data.clients;
   const [query, setQuery] = useState("");
   return (
-    <div>
-      <input type="text" id="myInput" onChange={e=>setQuery(e.target.value.toLowerCase())} placeholder="Procurar..."></input>  
-      <table id="myTable">
-        <thead>
-            <tr className="header">
-                <th>id</th>
-                <th>name</th>
-                <th>lastName</th>
-                <th>phone</th>
-                <th>email</th>
-                <th>address</th>
-                <th>notes</th>
+    <div className={styles.wrapper}>
+      <div className={styles.actionsBar}>
+        <input className={styles.searchBar} type="text" id="myInput" onChange={e=>setQuery(e.target.value.toLowerCase())} placeholder="Procurar Cliente..."></input>
+        <AddServiceButton/ >
+      </div>      
+      <table className={styles.table} id="table">
+        <thead className={styles.tableHead}>
+            <tr className={styles.tableHeader}>
+                <th className={styles.cell} >id</th>
+                <th className={styles.cell} >name</th>
+                <th className={styles.cell} >lastName</th>
+                <th className={styles.cell} >phone</th>
+                <th className={styles.cell} >email</th>
+                <th className={styles.cell} >address</th>
+                <th className={styles.cell} >notes</th>
             </tr>
         </thead>
         <tbody className="list">

@@ -11,7 +11,6 @@ export default function Home() {
  
   return (
     <div>
-      <Button label="Secondary" className="p-button-raised p-button-secondary" />
       <p>Hello Home</p>
     </div>
   )
