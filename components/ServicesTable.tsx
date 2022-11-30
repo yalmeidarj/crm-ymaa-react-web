@@ -41,7 +41,13 @@ export default function ServicesTable( data:ServicesProps ) {
   });
   const service = data.data.services;
   const [query, setQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(2);
+  const [rowsPerPage, setRowsPerPage] = useState(1);
+  const [search, setSearch] = useState('')
 
+  const lastRowIndex = currentPage * rowsPerPage;
+  const firstRowIndex = lastRowIndex - rowsPerPage;
+  const pageOnDisplay = service.slice(firstRowIndex, lastRowIndex);
   return (
     <div className={styles.wrapper}>
       <div className={styles.actionsBar}>
@@ -64,7 +70,7 @@ export default function ServicesTable( data:ServicesProps ) {
         </thead>
         <tbody className={styles.list}>
 
-          {service.filter(service =>
+          {pageOnDisplay.filter(service =>
           {
               return service.serviceAddress.toLowerCase().includes(query) ||
               service.payType.toLowerCase().includes(query) ||

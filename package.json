@@ -9,22 +9,37 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
+    "@fullcalendar/react": "^5.11.3",
+    "@fullcalendar/timegrid": "^5.11.3",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@userfront/react": "^0.3.1",
     "axios": "^1.1.3",
     "bootstrap": "^5.2.2",
+    "date-fns": "^2.29.3",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
+    "fullcalendar": "^5.11.3",
     "next": "13.0.3",
     "primeicons": "^6.0.1",
     "primereact": "^8.7.2",
     "react": "18.2.0",
+    "react-big-calendar": "^1.5.2",
     "react-bootstrap": "^2.6.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.4.3",
     "react-table": "^7.8.0",
     "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "@types/globalize": "^1.5.2",
+    "@types/react-big-calendar": "^0.38.2",
+    "@types/react-datepicker": "^4.8.0"
   }
 }

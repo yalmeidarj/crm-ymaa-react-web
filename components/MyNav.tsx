@@ -12,8 +12,8 @@ export function MyNav() {
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                  <Nav.Link href="#features">Financeiro</Nav.Link>
-                  <Nav.Link href="#pricing">Calendário</Nav.Link>
+                  <Nav.Link href="/financial">Financeiro</Nav.Link>
+                  <Nav.Link href="/calendar">Calendário</Nav.Link>
                   <NavDropdown title="Tabelas" id="collasible-nav-dropdown">
                     <NavDropdown.Item href="/tables">Clientes</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
