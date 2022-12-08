@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo } from 'react'
-// import FullCalendar, { EventApi, DateSelectArg, EventClickArg, EventContentArg, formatDate } from '@fullcalendar/react'
-// import dayGridPlugin from '@fullcalendar/daygrid';
-// import timeGridPlugin from '@fullcalendar/timegrid';
-// import interactionPlugin from '@fullcalendar/interaction';
+
+
 import styles from '../styles/Calendar.module.css'
 
+// import 'react-big-calendar/lib/sass/styles';
 import { useState } from "react";
 import { Calendar, DateLocalizer, dateFnsLocalizer } from "react-big-calendar";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+// import 'react-big-calendar/lib/sass/styles.scss';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -136,11 +136,12 @@ export default function DemoAppState(props) {
               showTimeSelect placeholderText={initialDate}
               selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })}
             />
-            <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
+            <button className={styles.button} onClick={handleAddEvent}>
               Adicionar
             </button>
+          </div>
         </div>
-        <button stlye={{ marginTop: "30px" }} onClick={handleDeleteEvent}>
+        <button className={styles.button} onClick={handleDeleteEvent}>
           Deletar
         </button>
         <Calendar
@@ -150,15 +151,20 @@ export default function DemoAppState(props) {
           endAccessor="end"
           culture={culture}
           messages={messages}
+          
           // onSelectEvent={handleSelectEvent}
           // onSelectSlot={handleSelectEvent}
           // scrollToTime={scrollToTime}
           selectable
-          style={{  marginTop:"30px", height: 600 }}
+          style={{ 
+            color: 'black',
+            boxShadow: 'black',
+            background:'#FBFBF9',
+             marginTop:"80px", height: 600 }}
           />
         </div>  
       </div>
-    </div>
+
   );
 }
 

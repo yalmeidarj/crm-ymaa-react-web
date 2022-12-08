@@ -1,0 +1,127 @@
+.wrapper {
+  margin: 0 auto;
+  padding: 2.5em;
+  max-width: 1200px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  border-radius: 35px;
+}
+
+.table {
+  width: 100%;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5),
+    0px -10px 20px rgba(255, 255, 255, 0.5);
+  display: table;
+  border-radius: 5px;
+  color: #f4f4f4;
+  background: #4b4d4f;
+  overflow-y: scroll;
+  text-align: center;
+}
+
+.table tr:nth-child(even) {
+  background-color: #3b3b3b;
+}
+.table tr td:last-child {
+  text-align: justify;
+}
+
+.tableHead {
+  color: #0ba758;
+  justify-items: center;
+  text-align: center;
+  background: #3b3b3b;
+}
+
+.tableHeader {
+  justify-self: center;
+  align-self: center;
+}
+.notesCell {
+  width: 130%;
+  padding-left: 10px;
+  padding-right: 12px;
+  border-left: 1px solid black;
+}
+
+.cell {
+  height: 10px;
+  margin: 20px;
+  padding: 10px;
+  /* min-width: auto; */
+}
+.searchBar {
+  width: 45%;
+  /* align-self: center; */
+  background: #444447;
+  /* padding: auto; */
+  /* margin: 20px; */
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination {
+  display: inline-flex;
+  width: auto;
+
+  justify-content: flex-end;
+}
+.pagination button {
+  margin: 5px;
+}
+.clientForm {
+  display: inline-flex;
+  margin: 5px;
+  /* max-height: 40px; */
+  /* flex-flow: column wrap; */
+  justify-content: start;
+}
+
+/* @media screen and (max-width: 580px) {
+  .tableRow {
+    padding: 14px 0 7px;
+    display: block;
+    
+  }
+  .tableRow.header {
+    padding: 0;
+    height: 6px;
+  }
+  .tableRow.header .cell {
+    display: none;
+  }
+  .tableRow .cell {
+    margin-bottom: 10px;
+    
+  }
+  .tableRow .cell:before {
+    margin-bottom: 3px;
+    content: attr(data-title);
+    min-width: 98px;
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #969696;
+    display: block;
+  }
+}
+
+.cell {
+  padding: 6px 12px;
+  /* display: table-cell; */
+/* height: 5px;
+}
+@media screen and (max-width: 580px) {
+  .cell {
+    padding: 2px 16px;
+    display: block;
+  }
+  .tableHeader {
+    display: none;
+  }
+  .cell {
+    width: 100%;
+  }
+} */

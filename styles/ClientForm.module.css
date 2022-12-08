@@ -1,0 +1,104 @@
+.wrapper {
+  /* width: 100vw; */
+  /* max-width: 1400px; */
+  display: flex;
+  padding: 0.5em;
+  /* box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2); */
+  /* justify-content: justify;
+  align-items: justify; */
+  /* background: #3b3b3b; */
+  max-width: 580px;
+  min-width: 500px;
+  /* opacity: 0.9; */
+  /* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5),
+    0px -10px 20px rgba(255, 255, 255, 0.5); */
+  border-radius: 8px;
+}
+.wrapper:first-child {
+  /* justify-content: right;
+  align-items: right; */
+}
+.openModalButton {
+  background: #3b3b3b;
+  color: #0ba758;
+}
+.backButton {
+  background: #3b3b3b;
+
+  /* self-align: right;
+  justify-self: right; */
+  /* margin-left: 60px; */
+  /* display: block; */
+}
+
+/* Modal Content/Box */
+.modalContent {
+  background-color: #242424;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 10px;
+  border: 1px solid #888;
+  width: 90%; /* Could be more or less, depending on screen size */
+  box-shadow: 0px 5px 100px rgba(0, 0, 0, 0.5),
+    0px -5px 10px rgba(#0ba758, 255, 255, 0.5);
+}
+.formLabel {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  display: block;
+  color: #0ba758;
+}
+
+.formInput {
+  padding: 0.5em;
+
+  font-size: 1em;
+  background: #4b4d4f;
+  border: 1px solid #ccc;
+  width: 100%;
+  /* box-sizing: border-box; */
+  margin-bottom: 1em;
+  display: block;
+}
+.textarea {
+  display: block;
+  width: 100%;
+  /* resize: none; */
+}
+.textarea .formInput {
+  height: 9em;
+  width: 100%;
+  /* resize: none; */
+}
+
+.formButton[type="submit"] {
+  padding: 0.5em 1em;
+  background: #243c64;
+  color: #0ba758;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+  display: block;
+  width: 50%;
+  border-radius: 5px;
+  margin-top: 1em;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}

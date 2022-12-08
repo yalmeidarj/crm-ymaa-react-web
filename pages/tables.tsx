@@ -1,57 +1,46 @@
-import axios from "axios";
-import { GetServerSideProps } from "next";
-import { useState, useEffect } from "react";
-import ServicesTable from "../components/ServicesTable";
-import  ClientsTable  from "../components/ClientsTable";
-import { api } from "../src/axios";
+import { GetServerSideProps } from 'next';
+import { useState } from 'react';
+import ServicesTable from '../components/ServicesTable';
+import ClientsTable from '../components/ClientsTable';
 
-interface TableProps {
-  props: {
-    props: {
-      services: {},
-      clients: {}
-    }
-  }
-}
 
-export default function tables( props:TableProps ) {
-  useEffect(() => { 
-      props
-  });
-  
-  // const [page, setPage] = useState(1);
-  // const [totalPages, setTotalPages] = useState(10);
-
-  // const handlePrevPage = (prevPage: number) => {
-  //   setPage((prevPage) => prevPage - 1);
-  // };
-
-  // const handleNextPage = (nextPage: number) => {
-  //   console.log(nextPage);
-  //   setPage((nextPage) => nextPage + 1);
-  // };
-
+export default function t(props) {
+  const [tableChoice, setTableChoice] = useState('clients');
+  const handleTableChoiceChange = event => {
+    setTableChoice(event.target.value);
+  };
   return (
-    <>
-      <div className="App">
-          <ServicesTable data={props} />  
-          {/* <br></br>
-          <br></br> */}
-          <ClientsTable data={props} />
-      </div>
-    </>
-  // <Login></Login> data={ dataTable} column={column}
-  )
+    <div>
+      <label>
+        <input
+          type="radio"
+          name="tableChoice"
+          value="clients"
+          checked={tableChoice === 'clients'}
+          onChange={handleTableChoiceChange}
+        />
+        {ClientsTable}
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="tableChoice"
+          value="services"
+          checked={tableChoice === 'services'}
+          onChange={handleTableChoiceChange}
+        />
+        {ServicesTable}
+      </label>
+      {tableChoice === 'clients' && <ClientsTable clients={props.clients} />}
+      {tableChoice === 'services' && <ServicesTable services={props.services} />}
+    </div>
+  );
 }
 export const getServerSideProps:GetServerSideProps = async () => {
-  const res = await fetch('http://127.0.0.1:4343/services')
-  const servicesResponse = await res.json()
-  const response = await fetch('http://127.0.0.1:4343/clients')
-  const clientsResponse = await response.json()  
-  // const [servicesResponse, clientsResponse] =  await Promise.all([
-  //   api.get("/services"),
-  //   api.get("/clients"),
-  // ])
+  const response = await fetch('http://127.0.0.1:4343/services')
+  const servicesResponse = await response.json()
+  const res = await fetch('http://127.0.0.1:4343/clients')
+  const clientsResponse = await res.json()  
 
   return {
     props: {

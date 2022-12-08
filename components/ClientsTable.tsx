@@ -1,88 +1,84 @@
-import { useState, useEffect } from 'react'
-import Client from './Client';
-import Pagination from './Pagination';
-import styles from '../styles/ClientTable.module.css'
-import AddServiceButton from './AddServiceButton';
-interface clientElement {
-    clients: {
-        id:       number;
-        name:     string;
-        lastName: string;
-        phone:    string;
-        email:    string;
-        address:  string;
-        notes:    string;
-    }    
-}
+import { useState } from 'react';
+import styles from '../styles/ServicesTable.module.css'
+import ClientForm from './ClientForm';
+export default function ClientsTable(props) {
+  const [clients, setClients] = useState(props.clients);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-interface ClientsProps {
-  data: clientElement
-}
+  const handleSearch = event => {
+    setSearchTerm(event.target.value);
+    const filteredClients = props.clients.filter(client =>
+      client.id.toString().includes(event.target.value) ||
+      client.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      client.email.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      client.phone.toString().includes(event.target.value)
+    );
+    setClients(filteredClients);
+  };
 
-function createClient(client){    
+  const handlePageChange = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
+
+
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = clients.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(clients.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
     return (
-        <Client
-            key={client.phone}
-            id={client.id}
-            name={client.name}
-            lastName={client.lastName}
-            phone={client.phone}
-            email={client.email }
-            address={client.address}
-            notes={client.notes}
-        />
-    )
-}
+      <div>
+        <div className={styles.clientForm}>
+          <ClientForm />
+        </div>  
+        <div className={styles.wrapper}>
+        <input
+          className={styles.searchBar}
+          type="text"
+          placeholder="Buscar Cliente"
+          value={searchTerm}
+          onChange={handleSearch}
+        />          
+        <div className={styles.pagination}>
+          {pageNumbers.map(number => (
+            <button key={number} onClick={() => handlePageChange(number)}>
+              {number}
+            </button>
+          ))}
+        </div>          
+          <table className={styles.table}>
+            <thead className={styles.tableHead}>
+              <tr >
+                <th className={styles.tableHeader}>ID</th>
+                <th className={styles.tableHeader}>Nome</th>
+                <th className={styles.tableHeader}>Email</th>
+                <th className={styles.tableHeader}>Telefone</th>
+                <th className={styles.tableHeader}>Endereço</th>
+                <th className={styles.tableHeader}>Outros</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentItems.map(client => (
+                <tr  key={client.id}>
+                  <td className={styles.cell}>{client.id}</td>
+                  <td className={styles.cell}>{client.name} {client.lastName}</td>
+                  <td className={styles.cell}>{client.email}</td>
+                  <td className={styles.cell}>{client.phone}</td>
+                  <td className={styles.cell}>{client.address}</td>
+                  <td className={styles.notesCell}>{client.notes}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-export default function ClientsTable( data: ClientsProps ) {
-  useEffect(() => { 
-    data
-  });
-
-  const client = data.data.clients;
-  const [query, setQuery] = useState("");
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.actionsBar}>
-        <input className={styles.searchBar} type="text" id="myInput" onChange={e=>setQuery(e.target.value.toLowerCase())} placeholder="Procurar Cliente..."></input>
-        <AddServiceButton/ >
-      </div>      
-      <table className={styles.table} id="table">
-        <thead className={styles.tableHead}>
-            <tr className={styles.tableHeader}>
-                <th className={styles.cell} >id</th>
-                <th className={styles.cell} >name</th>
-                <th className={styles.cell} >lastName</th>
-                <th className={styles.cell} >phone</th>
-                <th className={styles.cell} >email</th>
-                <th className={styles.cell} >address</th>
-                <th className={styles.cell} >notes</th>
-            </tr>
-        </thead>
-        <tbody className="list">
-           {/* <Pagination
-            totalPages={totalPages}
-            currentPage={page}
-            handlePrevPage={handlePrevPage}
-            handleNextPage={handleNextPage}
-          />             */}
-          {client.filter(client => 
-            {
-                return client.name.toLowerCase().includes(query) ||
-                client.lastName.toLowerCase().includes(query) ||
-                client.phone.toLowerCase().includes(query) ||
-                client.id.toString().includes(query) ||
-                client.address.toLowerCase().includes(query) ||
-                client.email.toLowerCase().includes(query) ||
-                client.notes.toLowerCase().includes(query)
-              } 
-
-            ).map(createClient)}
-        </tbody>   
-      </table>
       </div>
-  )
-        
-
+      
+    );
 }
-
