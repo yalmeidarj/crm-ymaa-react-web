@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import styles from '../styles/ClientForm.module.css'
 import { BsArrowCounterclockwise } from "react-icons/bs";
 
-export default function ServiceForm() {
-    const [appointmentDate, setAppointmentDate] = useState('');
-    const [value, setValue] = useState('');
-    const [payType, setPayType] = useState('');
-    const [serviceAddress, setServiceAddress] = useState('');
-    const [isPaid, setIsPaid] = useState('');
-    const [description, setDescription] = useState('');
-    const [serviceClientId, setServiceClientId] = useState('');
+export default function ServiceForm(props) {
+    const [appointmentDate, setAppointmentDate] = useState(props.appointmentDate);
+    const [value, setValue] = useState(props.value);
+    const [payType, setPayType] = useState(props.payType);
+    const [serviceAddress, setServiceAddress] = useState(props.serviceAddress);
+    const [isPaid, setIsPaid] = useState(props.isPaid);
+    const [description, setDescription] = useState(props.description);
+    const [serviceClientId, setServiceClientId] = useState(props.serviceClientId);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [clientNameDisplay, setClientNameDisplay] = useState(props.clientNameDisplay);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch('http://127.0.0.1:4343/services', {
+        await fetch('http://127.0.0.1:4343/services', {
             method: 'POST',
             body: JSON.stringify({
                 appointmentDate: appointmentDate,
@@ -24,7 +26,8 @@ export default function ServiceForm() {
                 serviceAddress: serviceAddress,
                 isPaid: isPaid,
                 description: description,
-                serviceClientId: serviceClientId
+                serviceClientId: 
+                    serviceClientId
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -46,13 +49,22 @@ export default function ServiceForm() {
     }
 
     return (
-        <>
-            <button className={styles.openModalButton} onClick={() => setIsModalOpen(!isModalOpen)}>Registrar Serviço</button>
+        <>  
+            {!isModalOpen && (
+                <button className={styles.openModalButton} onClick={() => setIsModalOpen(!isModalOpen)}>Registrar Serviço</button>)}
             {isModalOpen && (
                 <div className={styles.wrapper}>
                     <form  className={styles.modalContent} onSubmit={handleSubmit}>
                         <button className={styles.backButton}onClick={() => setIsModalOpen(false)} ><BsArrowCounterclockwise/></button>
-                        <label className={styles.formLabel} htmlFor="appointmentDate">Appointment Date</label>
+                        <label className={styles.formLabel} htmlFor="serviceClientId">Número de ID do Cliente: <span>{clientNameDisplay}</span></label>
+                        <input
+                            className={styles.formInput}
+                            type="text"
+                            name="serviceClientId"
+                            value={serviceClientId}
+                            onChange={(e) => setServiceClientId(e.target.value)}
+                        />                        
+                        <label className={styles.formLabel} htmlFor="appointmentDate">Data e Horário</label>
                         <input
                             className={styles.formInput}
                             type="datetime-local"
@@ -60,7 +72,7 @@ export default function ServiceForm() {
                             value={appointmentDate}
                             onChange={(e) => setAppointmentDate(e.target.value)}
                         />
-                        <label className={styles.formLabel} htmlFor="value">Value</label>
+                        <label className={styles.formLabel} htmlFor="value">Preço</label>
                         <input
                             className={styles.formInput}
                             type="number"
@@ -68,7 +80,7 @@ export default function ServiceForm() {
                             value={value}
                             onChange={(e) => setValue(e.target.value)}
                         />
-                        <label className={styles.formLabel} htmlFor="serviceAddress">Service Address</label>
+                        <label className={styles.formLabel} htmlFor="serviceAddress">Endereço do Serviço</label>
                         <input
                             className={styles.formInput}
                             type="text"
@@ -76,7 +88,7 @@ export default function ServiceForm() {
                             value={serviceAddress}
                             onChange={(e) => setServiceAddress(e.target.value)}
                         />
-                        <label className={styles.formLabel} htmlFor="payType">Payment Type</label>
+                        <label className={styles.formLabel} htmlFor="payType">Tipo de Pagamento</label>
                         <input
                             className={styles.formInput}
                             type="text"
@@ -85,7 +97,7 @@ export default function ServiceForm() {
                             onChange={(e) => setPayType(e.target.value)}
                         />
 
-                        <label className={styles.formLabel} htmlFor="isPaid">Is Paid</label>
+                        <label className={styles.formLabel} htmlFor="isPaid">já pago?</label>
                         <input
                             className={styles.formInput}
                             type="text"
@@ -93,21 +105,16 @@ export default function ServiceForm() {
                             value={isPaid}
                             onChange={(e) => setIsPaid(e.target.value)}
                         />
-                        <label className={styles.formLabel} htmlFor="description">Description</label>
+                        <label className={styles.formLabel} htmlFor="description">Mais informações</label>
                         <textarea
+                            className={styles.textarea}
                             name="description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                        <label className={styles.formLabel} htmlFor="serviceClientId">Service Client ID</label>
-                        <input
-                            className={styles.formInput}
-                            type="text"
-                            name="serviceClientId"
-                            value={serviceClientId}
-                            onChange={(e) => setServiceClientId(e.target.value)}
-                        />
-                        <button type="submit">Create Service</button>
+                        <div className={styles.formButton}>
+                            <button className={styles.serviceFormButton} type="submit">Criar Serviço</button>
+                        </div>
                     </form>
                 </div>   
 )} </>            

@@ -126,9 +126,9 @@ export default function ServicesTable(props) {
 
   return (
     <div>
-      <div className={styles.clientForm}>
+      {/* <div className={styles.clientForm}>
         <ServiceForm />
-      </div>       
+      </div>        */}
       <div className={styles.wrapper}>
         <input
           className={styles.searchBar}

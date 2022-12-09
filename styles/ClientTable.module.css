@@ -15,6 +15,9 @@
   display: table;
   border-radius: 5px;
 }
+.tbody tr {
+  cursor: pointer;
+}
 @media screen and (max-width: 580px) {
   .table {
     display: table;

@@ -23,6 +23,12 @@
 .table tr:nth-child(even) {
   background-color: #3b3b3b;
 }
+
+.table tr {
+  cursor: pointer;
+  height: 3em;
+}
+
 .table tr td:last-child {
   text-align: justify;
 }
@@ -54,7 +60,7 @@
 .searchBar {
   width: 45%;
   /* align-self: center; */
-  background: #444447;
+  background: #242424;
   /* padding: auto; */
   /* margin: 20px; */
   color: white;
@@ -64,20 +70,32 @@
 .pagination {
   display: inline-flex;
   width: auto;
-
+  font-size: 1.1em;
   justify-content: flex-end;
 }
 .pagination button {
   margin: 5px;
+  border-radius: 10px;
+  background: #242424;
+  color: #0ba758;
 }
 .clientForm {
-  display: inline-flex;
+  /* display: inline-flex; */
+  display: flex;
   margin: 5px;
   /* max-height: 40px; */
   /* flex-flow: column wrap; */
-  justify-content: start;
+  justify-content: center;
 }
 
+.updateClientForm button {
+  margin: 5px;
+  width: 30%;
+}
+
+.serviceExistClient {
+  color: black;
+}
 /* @media screen and (max-width: 580px) {
   .tableRow {
     padding: 14px 0 7px;

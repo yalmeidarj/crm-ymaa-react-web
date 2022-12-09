@@ -48,10 +48,13 @@
   display: block;
   color: #0ba758;
 }
-
+.formLabel span {
+  color: #dbb121;
+  font-size: 1.2em;
+}
 .formInput {
   padding: 0.5em;
-
+  border-radius: 7px;
   font-size: 1em;
   background: #4b4d4f;
   border: 1px solid #ccc;
@@ -70,18 +73,30 @@
   width: 100%;
   /* resize: none; */
 }
-
-.formButton[type="submit"] {
+.formButton {
+  display: flex;
+  justify-content: end;
+}
+.serviceFormButton[type="submit"] {
   padding: 0.5em 1em;
   background: #243c64;
-  color: #0ba758;
+  color: #f4f4f4;
+  /* color: #0ba758; */
   font-size: 1em;
   border: none;
   cursor: pointer;
   display: block;
   width: 50%;
   border-radius: 5px;
-  margin-top: 1em;
+  margin-top: 2.5em;
+  margin-bottom: 0.5em;
+  opacity: 1;
+  transition: 0.2s;
+}
+.serviceFormButton[type="submit"]:hover {
+  box-shadow: 0px 2px 5px #0ba758;
+  transform: scale(1.05);
+  /* opacity: 0.6; */
 }
 .close {
   color: #aaa;
